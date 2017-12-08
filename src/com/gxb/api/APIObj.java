@@ -1,7 +1,5 @@
 package com.gxb.api;
 
-import org.json.JSONObject;
-
 /**
  * Describe：API接口对象
  * @author Wolkin
@@ -9,5 +7,8 @@ import org.json.JSONObject;
  */
 
 public interface APIObj {
-	public abstract JSONObject jsonObj();
+	String paraStr = "";
+	public abstract String jsonObj();
+	
+	public abstract void DoParameter(String paraStr);
 }

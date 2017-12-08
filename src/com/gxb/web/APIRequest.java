@@ -1,19 +1,17 @@
 package com.gxb.web;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Properties;
-
-import org.json.JSONObject;
 
 import com.gxb.api.APIObj;
 
@@ -24,7 +22,7 @@ import com.gxb.api.APIObj;
  */
 
 public class APIRequest {
-	public static final String ADD_URL = "https://node1.gxb.io/rpc";
+	public static final String ADD_URL = "http://block.gxb.io/api";
 	public static final String propertiesFile = "./WebContent/WEB-INF/etc/gxbapi.properties";
 	public static HttpURLConnection connection = null;
 	public static Properties apiProperties = null;
@@ -36,20 +34,7 @@ public class APIRequest {
 			InputStream inputStream = new FileInputStream(file);
 			apiProperties = new Properties();
 			apiProperties.load(inputStream);
-			//创建连接
-			URL url = new URL(ADD_URL);
-			connection = (HttpURLConnection) url.openConnection();
-			connection.setDoOutput(true);
-			connection.setDoInput(true);
-			connection.setRequestMethod("POST");
-			connection.setUseCaches(false);
-			connection.setInstanceFollowRedirects(true);
-			//application/x-javascript text/xml->xml数据 application/x-javascript->json对象 application/x-www-form-urlencoded->表单数据 application/json;charset=utf-8 -> json数据
-			connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
-			connection.setRequestProperty("accept", "*/*");
-			connection.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
 			
-			connection.connect();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,34 +56,46 @@ public class APIRequest {
 	public String GXBAPIRequest(String apiType,String parameter) {
 		String returnStr = "";
 		APIObj apiObj = null;
+		StringBuffer buffer = new StringBuffer();
+		
 		try {
 			Class c = Class.forName(apiProperties.getProperty(apiType));
 			apiObj = (APIObj) c.newInstance();
+			apiObj.DoParameter(parameter);
+			String obj = apiObj.jsonObj();
 			
-			//POST请求
-			DataOutputStream out = new DataOutputStream(connection.getOutputStream());
-			JSONObject obj = apiObj.jsonObj();
+			//创建连接
+			URL url = new URL("http://block.gxb.io/api/account/gxb-wm");
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true);
+			connection.setDoInput(true);
+			connection.setRequestMethod("POST");
+			connection.setUseCaches(false);
+			connection.setConnectTimeout(5000);
+			//connection.setInstanceFollowRedirects(true);
+			connection.setRequestProperty("Content-Length",String.valueOf(parameter.length()));
+			//application/x-javascript text/xml->xml数据 application/x-javascript->json对象 application/x-www-form-urlencoded->表单数据 application/json;charset=utf-8 -> json数据
+			connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+			//connection.setRequestProperty("accept", "*/*");
+			//connection.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+			connection.connect();
 			
-			out.writeBytes(obj.toString());
-			out.flush();
-			out.close();
-			
-			//读取响应
-			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			
-			returnStr = reader.toString();
-//			String lines;
-//			StringBuffer sb = new StringBuffer("");
-//			
-//			while ((lines = reader.readLine()) != null) {  
-//                lines = new String(lines.getBytes(), "utf-8");  
-//                sb.append(lines);  
-//            }
-//			
-//			System.out.println(sb);
-//			reader.close();
-			
-			connection.disconnect();
+			InputStream inputStream = connection.getInputStream();
+	        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+	        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);    
+	    
+	        String str = null;    
+	        while ((str = bufferedReader.readLine()) != null) {    
+	        	buffer.append(str);
+	        }
+	        
+	        System.out.println(buffer.toString());
+	        bufferedReader.close();    
+	        inputStreamReader.close();    
+	        // 释放资源    
+	        inputStream.close();    
+	        inputStream = null;    
+	        connection.disconnect();    
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -117,4 +114,10 @@ public class APIRequest {
 		return returnStr;
 	}
 	
+	
+	public static void main(String[] args) {
+		APIRequest test = new APIRequest();
+		String str = test.GXBAPIRequest("get_account","gxb-wm");
+		System.out.println(str);
+	}
 }

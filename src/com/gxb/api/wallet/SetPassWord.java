@@ -1,8 +1,5 @@
 package com.gxb.api.wallet;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
  * 对钱包设置一个新密码。首次启动钱包，需要设置密码
  * usage: set_password new_password
@@ -28,17 +25,16 @@ public class SetPassWord extends WalletAPI {
 	}
 	
 	@Override
-	public JSONObject jsonObj() {
+	public String jsonObj() {
 		
-		try {
-			jsonObj.put("new_password", new_password);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return jsonObj;
+		return this.new_password;
 	}
 
+	@Override
+	public void DoParameter(String paraStr) {
+		this.new_password = paraStr;
+	}
+	
 	public String getNew_password() {
 		return new_password;
 	}

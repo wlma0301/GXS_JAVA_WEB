@@ -16,5 +16,6 @@ public abstract class WalletAPI implements APIObj{
 	 * @see com.gxb.api.APIObj#jsonObj()
 	 * 当前API封装成JSONObject对象
 	 */
-	public abstract JSONObject jsonObj();
+	public abstract String jsonObj();
+	
 }
