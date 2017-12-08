@@ -25,7 +25,7 @@ import com.gxb.api.APIObj;
 
 public class APIRequest {
 	public static final String ADD_URL = "https://node1.gxb.io/rpc";
-	public static final String propertiesFile = "/WEB-INF/etc/gxbapi.properties";
+	public static final String propertiesFile = "./WebContent/WEB-INF/etc/gxbapi.properties";
 	public static HttpURLConnection connection = null;
 	public static Properties apiProperties = null;
 	
