@@ -23,7 +23,9 @@
                                       apiType接口类型  parameter传入参数，多单数以,好分割
          示例（获取账户信息接口）：APIRequest test = new APIRequest();
                          test.GXBAPIRequest("getaccount","gxb-wm");
-
+         详细使用说明参见：\src\com\gxb\test\APITest.java
+         
+         
 ##本程序设计主旨帮助Java和公信宝爱好者快速实现接口开发、对接                         
 ##架构会继续完善，程序设计目前支持单参数，下一步多参数及各类参数进行扩展
 
