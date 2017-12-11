@@ -1,21 +1,18 @@
 package com.gxb.api.wallet;
 
-import org.json.JSONObject;
 import com.gxb.api.APIObj;
 
 /**
  * 钱包信息接口对象
- * @author jjwang
+ * @author Wolkin
  *
  */
 
 public abstract class WalletAPI implements APIObj{
-	protected JSONObject jsonObj = new JSONObject();
-	/*
-	 * (non-Javadoc)
-	 * @see com.gxb.api.APIObj#jsonObj()
-	 * 当前API封装成JSONObject对象
-	 */
+	
+	@Override
 	public abstract String jsonObj();
 	
+	@Override
+	public abstract void doParameter(String paraStr);
 }

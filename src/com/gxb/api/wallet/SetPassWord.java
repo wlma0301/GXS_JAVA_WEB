@@ -17,13 +17,6 @@ public class SetPassWord extends WalletAPI {
 		
 	}
 	
-	/*
-	 * ¹¹Ôìº¯Êý
-	 */
-	public SetPassWord(String new_passowrd) {
-		this.new_password = new_password;
-	}
-	
 	@Override
 	public String jsonObj() {
 		
@@ -31,7 +24,7 @@ public class SetPassWord extends WalletAPI {
 	}
 
 	@Override
-	public void DoParameter(String paraStr) {
+	public void doParameter(String paraStr) {
 		this.new_password = paraStr;
 	}
 	

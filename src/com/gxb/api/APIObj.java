@@ -1,14 +1,22 @@
 package com.gxb.api;
 
 /**
- * Describe：API接口对象
+ * Describe：定义API接口对象
  * @author Wolkin
- *
+ * 
  */
 
 public interface APIObj {
-	String paraStr = "";
+	
+	/**
+	 * 打包各个接口信息
+	 * @return
+	 */
 	public abstract String jsonObj();
 	
-	public abstract void DoParameter(String paraStr);
+	/**
+	 * 各个接口参数处理
+	 * @param paraStr
+	 */
+	public abstract void doParameter(String paraStr);
 }
