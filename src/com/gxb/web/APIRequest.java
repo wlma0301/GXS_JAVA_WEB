@@ -78,6 +78,7 @@ public class APIRequest {
 			}
 			
 			InputStream inputStream = httpDo.connection.getInputStream();
+			
 	        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
 	        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 	    
@@ -113,7 +114,7 @@ public class APIRequest {
 	
 	public static void main(String[] args) {
 		APIRequest test = new APIRequest();
-		String str = test.GXBAPIRequest("getaccount","gxb-wm");
+		String str = test.GXBAPIRequest("accountbalance","gxb-wm");
 		System.out.println(str);
 	}
 }

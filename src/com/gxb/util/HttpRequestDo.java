@@ -54,9 +54,11 @@ public class HttpRequestDo {
 	 */
 	public String headerFieldURL() {
 		String strURL = this.connection.getHeaderField("Location");
+		
 		if(strURL.startsWith("https")) {
 			strURL = strURL.replace("https", "http");
 		}
+		
 		System.out.println(strURL);
 		return strURL;
 	}
