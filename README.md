@@ -10,9 +10,9 @@
       实现继承函数public void doParameter(String paraStr){}
             public String jsonObj(){}
             
-## Baas-API实现接口需继承BaasAPI抽象类实现对应方法
-## Wallet-API实现接口需继承WalletAPI抽象类实现对应方法
-## Witness-API实现接口只需继承WitnessAPI抽象类实现对应方法
+# Baas-API实现接口需继承BaasAPI抽象类实现对应方法
+# Wallet-API实现接口需继承WalletAPI抽象类实现对应方法
+# Witness-API实现接口只需继承WitnessAPI抽象类实现对应方法
         示例：public class GetAccount extends WalletAPI {
            @Override
            ......
