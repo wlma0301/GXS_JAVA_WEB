@@ -21,7 +21,7 @@ import com.gxb.util.HttpRequestDo;
  */
 
 public class APIRequest {
-	public static final String ADD_URL = "http://block.gxb.io/api";
+	public static final String ADD_URL = "https://block.gxb.io/api/";
 	public static final String propertiesFile = "./WebContent/WEB-INF/etc/gxbapi.properties";
 	public static HttpURLConnection connection = null;
 	public static Properties apiProperties = null;
@@ -64,7 +64,7 @@ public class APIRequest {
 			apiObj = (APIObj) c.newInstance();
 			apiObj.doParameter(parameter);
 			String obj = apiObj.jsonObj();
-			String strUrl = "http://block.gxb.io/api/" + obj;
+			String strUrl = ADD_URL + obj;
 			httpDo = new HttpRequestDo(strUrl);
 			int count = 0;
 			while(httpDo.responseCode() == 302 || httpDo.responseCode() == 301) {
@@ -109,12 +109,5 @@ public class APIRequest {
 		}
 		
 		return returnStr;
-	}
-	
-	
-	public static void main(String[] args) {
-		APIRequest test = new APIRequest();
-		String str = test.GXBAPIRequest("accountbalance","gxb-wm");
-		System.out.println(str);
 	}
 }

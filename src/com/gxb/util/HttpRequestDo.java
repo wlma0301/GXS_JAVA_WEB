@@ -29,15 +29,15 @@ public class HttpRequestDo {
 			//允许输入流，即允许下载
 			this.connection.setDoInput(true);
 			//使用post请求
-			this.connection.setRequestMethod("POST");
+			this.connection.setRequestMethod("GET");
 			//不使用缓冲
 			this.connection.setUseCaches(false);
 			this.connection.setConnectTimeout(5000);
 			//自动执行HTTP重定向 
-			this.connection.setInstanceFollowRedirects(true);
+			this.connection.setInstanceFollowRedirects(false);
 			//application/x-javascript text/xml->xml数据 application/x-javascript->json对象 application/x-www-form-urlencoded->表单数据 application/json;charset=utf-8 -> json数据
 			this.connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
-			
+			this.connection.connect();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,14 +53,7 @@ public class HttpRequestDo {
 	 * @return
 	 */
 	public String headerFieldURL() {
-		String strURL = this.connection.getHeaderField("Location");
-		
-		if(strURL.startsWith("https")) {
-			strURL = strURL.replace("https", "http");
-		}
-		
-		System.out.println(strURL);
-		return strURL;
+		return this.connection.getHeaderField("Location");
 	}
 	
 	/**
@@ -76,7 +69,6 @@ public class HttpRequestDo {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(code);
 		return code;
 	}
 }
