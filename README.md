@@ -17,18 +17,18 @@
            @Override
            ......
        }
-### API说明
-# 1.供应量查询
+## API说明
+### 1.供应量查询
 	com.gxb.web.APIRequest().GXBAPIRequest("supplyquery", "")
-# 2.区块查询
+### 2.区块查询
 	com.gxb.web.APIRequest().GXBAPIRequest("blockquery", "")
-# 3.交易查询
+### 3.交易查询
 	com.gxb.web.APIRequest().GXBAPIRequest("transactionquery", tx_id)
-# 4.账户查询
+### 4.账户查询
 	com.gxb.web.APIRequest().GXBAPIRequest("getaccount", account_name_or_id)
-# 5.余额查询
+### 5.余额查询
 	com.gxb.web.APIRequest().GXBAPIRequest("accountbalance", account_name_or_id)
-# 6.账户头像
+### 6.账户头像
 	com.gxb.web.APIRequest().GXBAPIRequest("accountheader", account_name)
 	
 ## 使用说明
