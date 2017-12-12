@@ -58,9 +58,16 @@ public class APIRequest {
 		APIObj apiObj = null;
 		StringBuffer buffer = new StringBuffer();
 		HttpRequestDo httpDo = null;
+		String apiType_1 = apiProperties.getProperty(apiType);
+		if(apiType_1 == null || "".equals(apiType_1)) {
+			System.out.println("API Type is not find! Please check is.");
+			returnStr = "failed";
+			return returnStr;
+		}
 		
 		try {
-			Class c = Class.forName(apiProperties.getProperty(apiType));
+			
+			Class c = Class.forName(apiType_1);
 			apiObj = (APIObj) c.newInstance();
 			apiObj.doParameter(parameter);
 			String obj = apiObj.jsonObj();
@@ -82,7 +89,7 @@ public class APIRequest {
 	        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
 	        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 	    
-	        String str = "";    
+	        String str = "";
 	        while ((str = bufferedReader.readLine()) != null) {
 	        	buffer.append(str);
 	        }
