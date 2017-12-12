@@ -21,7 +21,7 @@
 ### 1.供应量查询
 	com.gxb.web.APIRequest().GXBAPIRequest("supplyquery", "")
 ### 2.区块查询
-	com.gxb.web.APIRequest().GXBAPIRequest("blockquery", "")
+	com.gxb.web.APIRequest().GXBAPIRequest("blockquery", block_height)
 ### 3.交易查询
 	com.gxb.web.APIRequest().GXBAPIRequest("transactionquery", tx_id)
 ### 4.账户查询
