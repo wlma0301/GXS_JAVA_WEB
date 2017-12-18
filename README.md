@@ -1,45 +1,45 @@
-# GXS_JAVA_WEB £¨¹«ĞÅ±¦½Ó¿Ú·â×°£©
-## À©Õ¹¿ª·¢ËµÃ÷
-        Ôö¼ÓÅäÖÃÎÄ¼ş\WebContent\WEB-INF\etc\gxbapi.properties 
-        ½Ó¿ÚÀàĞÍºÍ½Ó¿ÚÊµÏÖÀà¶ÔÓ¦¹ØÏµ    
-        Ê¾Àı£ºgetaccount = com.gxb.api.wallet.GetAccount£¨»ñÈ¡ÕË»§ĞÅÏ¢½Ó¿Ú£©ÎÄ¼şÔö¼Ó¼ÇÂ¼
-        ¶¨ÒåÀàcom.gxb.api.wallet.GetAccount¼Ì³ĞWalletAPI
-        Èç£ºpublic class GetAccount extends WalletAPI {
+# GXS_JAVA_WEB ï¼ˆå…¬ä¿¡å®æ¥å£å°è£…ï¼‰
+## æ‰©å±•å¼€å‘è¯´æ˜
+        å¢åŠ é…ç½®æ–‡ä»¶\WebContent\WEB-INF\etc\gxbapi.properties 
+        æ¥å£ç±»å‹å’Œæ¥å£å®ç°ç±»å¯¹åº”å…³ç³»    
+        ç¤ºä¾‹ï¼šgetaccount = com.gxb.api.wallet.GetAccountï¼ˆè·å–è´¦æˆ·ä¿¡æ¯æ¥å£ï¼‰æ–‡ä»¶å¢åŠ è®°å½•
+        å®šä¹‰ç±»com.gxb.api.wallet.GetAccountç»§æ‰¿WalletAPI
+        å¦‚ï¼špublic class GetAccount extends WalletAPI {
            ......
       }
-      ÊµÏÖ¼Ì³Ğº¯Êıpublic void doParameter(String paraStr){}
+      å®ç°ç»§æ‰¿å‡½æ•°public void doParameter(String paraStr){}
             public String jsonObj(){}
             
-### Baas-APIÊµÏÖ½Ó¿ÚĞè¼Ì³ĞBaasAPI³éÏóÀàÊµÏÖ¶ÔÓ¦·½·¨
-### Wallet-APIÊµÏÖ½Ó¿ÚĞè¼Ì³ĞWalletAPI³éÏóÀàÊµÏÖ¶ÔÓ¦·½·¨
-### Witness-APIÊµÏÖ½Ó¿ÚÖ»Ğè¼Ì³ĞWitnessAPI³éÏóÀàÊµÏÖ¶ÔÓ¦·½·¨
-        Ê¾Àı£ºpublic class GetAccount extends WalletAPI {
+### Baas-APIå®ç°æ¥å£éœ€ç»§æ‰¿BaasAPIæŠ½è±¡ç±»å®ç°å¯¹åº”æ–¹æ³•
+### Wallet-APIå®ç°æ¥å£éœ€ç»§æ‰¿WalletAPIæŠ½è±¡ç±»å®ç°å¯¹åº”æ–¹æ³•
+### Witness-APIå®ç°æ¥å£åªéœ€ç»§æ‰¿WitnessAPIæŠ½è±¡ç±»å®ç°å¯¹åº”æ–¹æ³•
+        ç¤ºä¾‹ï¼špublic class GetAccount extends WalletAPI {
            @Override
            ......
        }
-## APIËµÃ÷
-### 1.¹©Ó¦Á¿²éÑ¯
+## APIè¯´æ˜
+### 1.ä¾›åº”é‡æŸ¥è¯¢
 	com.gxb.web.APIRequest().GXBAPIRequest("supplyquery", "")
-### 2.Çø¿é²éÑ¯
+### 2.åŒºå—æŸ¥è¯¢
 	com.gxb.web.APIRequest().GXBAPIRequest("blockquery", block_height)
-### 3.½»Ò×²éÑ¯
+### 3.äº¤æ˜“æŸ¥è¯¢
 	com.gxb.web.APIRequest().GXBAPIRequest("transactionquery", tx_id)
-### 4.ÕË»§²éÑ¯
+### 4.è´¦æˆ·æŸ¥è¯¢
 	com.gxb.web.APIRequest().GXBAPIRequest("getaccount", account_name_or_id)
-### 5.Óà¶î²éÑ¯
+### 5.ä½™é¢æŸ¥è¯¢
 	com.gxb.web.APIRequest().GXBAPIRequest("accountbalance", account_name_or_id)
-### 6.ÕË»§Í·Ïñ
+### 6.è´¦æˆ·å¤´åƒ
 	com.gxb.web.APIRequest().GXBAPIRequest("accountheader", account_name)
 	
-## Ê¹ÓÃËµÃ÷
-         ÊµÀı»¯APIRequestÀà  µ÷ÓÃGXBAPIRequest(String apiType,String parameter)
-                                      apiType½Ó¿ÚÀàĞÍ  parameter´«Èë²ÎÊı£¬¶àµ¥ÊıÒÔ,ºÃ·Ö¸î
-         Ê¾Àı£¨»ñÈ¡ÕË»§ĞÅÏ¢½Ó¿Ú£©£ºAPIRequest test = new APIRequest();
+## ä½¿ç”¨è¯´æ˜
+         å®ä¾‹åŒ–APIRequestç±»  è°ƒç”¨GXBAPIRequest(String apiType,String parameter)
+                                      apiTypeæ¥å£ç±»å‹  parameterä¼ å…¥å‚æ•°ï¼Œå¤šå•æ•°ä»¥,å¥½åˆ†å‰²
+         ç¤ºä¾‹ï¼ˆè·å–è´¦æˆ·ä¿¡æ¯æ¥å£ï¼‰ï¼šAPIRequest test = new APIRequest();
                          test.GXBAPIRequest("getaccount","gxb-wm");
                          
-### ÏêÏ¸Ê¹ÓÃËµÃ÷²Î¼û£º\src\com\gxb\test\APITest.java
+### è¯¦ç»†ä½¿ç”¨è¯´æ˜å‚è§ï¼š\src\com\gxb\test\APITest.java
          
          
-##±¾³ÌĞòÉè¼ÆÖ÷Ö¼°ïÖúJavaºÍ¹«ĞÅ±¦°®ºÃÕß¿ìËÙÊµÏÖ½Ó¿Ú¿ª·¢¡¢¶Ô½Ó                         
-##¼Ü¹¹»á¼ÌĞøÍêÉÆ£¬³ÌĞòÉè¼ÆÄ¿Ç°Ö§³Öµ¥²ÎÊı£¬ÏÂÒ»²½¶à²ÎÊı¼°¸÷Àà²ÎÊı½øĞĞÀ©Õ¹
+## æœ¬ç¨‹åºè®¾è®¡ä¸»æ—¨å¸®åŠ©Javaå’Œå…¬ä¿¡å®çˆ±å¥½è€…å¿«é€Ÿå®ç°æ¥å£å¼€å‘ã€å¯¹æ¥                         
+## æ¶æ„ä¼šç»§ç»­å®Œå–„ï¼Œç¨‹åºè®¾è®¡ç›®å‰æ”¯æŒå•å‚æ•°ï¼Œä¸‹ä¸€æ­¥å¤šå‚æ•°åŠå„ç±»å‚æ•°è¿›è¡Œæ‰©å±•
 
