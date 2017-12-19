@@ -1,5 +1,7 @@
 package com.gxb.api.wallet;
 
+import org.json.JSONObject;
+
 import com.gxb.api.APIObj;
 
 /**
@@ -11,7 +13,7 @@ import com.gxb.api.APIObj;
 public abstract class WalletAPI implements APIObj{
 	
 	@Override
-	public abstract String jsonObj();
+	public abstract JSONObject jsonObj();
 	
 	@Override
 	public abstract void doParameter(String paraStr);

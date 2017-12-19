@@ -1,6 +1,7 @@
 package com.gxb.web;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,6 +11,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.util.Properties;
+
+import org.json.JSONObject;
 
 import com.gxb.api.APIObj;
 import com.gxb.util.HttpRequestDo;
@@ -21,7 +24,7 @@ import com.gxb.util.HttpRequestDo;
  */
 
 public class APIRequest {
-	public static final String ADD_URL = "https://block.gxb.io/api/";
+	public static final String ADD_URL = "https://node1.gxb.io/";
 	public static final String propertiesFile = "./WebContent/WEB-INF/etc/gxbapi.properties";
 	public static HttpURLConnection connection = null;
 	public static Properties apiProperties = null;
@@ -70,9 +73,15 @@ public class APIRequest {
 			Class c = Class.forName(apiType_1);
 			apiObj = (APIObj) c.newInstance();
 			apiObj.doParameter(parameter);
-			String obj = apiObj.jsonObj();
-			String strUrl = ADD_URL + obj;
-			httpDo = new HttpRequestDo(strUrl);
+			JSONObject obj = apiObj.jsonObj();
+			
+			httpDo = new HttpRequestDo(ADD_URL);
+			
+			DataOutputStream out = new DataOutputStream(httpDo.connection.getOutputStream());
+			out.writeBytes(obj.toString());
+            out.flush();
+            out.close();
+			System.out.println("11111111111111");
 			int count = 0;
 			while(httpDo.responseCode() == 302 || httpDo.responseCode() == 301) {
 				count ++ ;
@@ -116,5 +125,11 @@ public class APIRequest {
 		}
 		
 		return returnStr;
+	}
+	
+	public static void main(String args[]) {
+		APIRequest test = new APIRequest();
+		String str = test.GXBAPIRequest("getaccount","gxb-wm");
+		System.out.println(str);
 	}
 }

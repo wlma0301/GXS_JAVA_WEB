@@ -11,7 +11,7 @@ import com.gxb.api.APIObj;
 public abstract class WitnessAPI  implements APIObj{
 
 	@Override
-	public abstract String jsonObj();
+	public abstract JSONObject jsonObj();
 
 	/**
 	 * 参数处理
