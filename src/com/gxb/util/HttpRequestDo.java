@@ -34,9 +34,10 @@ public class HttpRequestDo {
 			this.connection.setUseCaches(false);
 			this.connection.setConnectTimeout(5000);
 			//自动执行HTTP重定向 
-			this.connection.setInstanceFollowRedirects(false);
+			//this.connection.setInstanceFollowRedirects(false);
 			//application/x-javascript text/xml->xml数据 application/x-javascript->json对象 application/x-www-form-urlencoded->表单数据 application/json;charset=utf-8 -> json数据
-			this.connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+			//设定 请求格式 json，也可以设定xml格式的
+			this.connection.setRequestProperty("Content-Type","application/json");
 			this.connection.connect();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
