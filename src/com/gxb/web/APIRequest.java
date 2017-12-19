@@ -81,35 +81,28 @@ public class APIRequest {
 			out.writeBytes(obj.toString());
             out.flush();
             out.close();
-			System.out.println("11111111111111");
-			int count = 0;
-			while(httpDo.responseCode() == 302 || httpDo.responseCode() == 301) {
-				count ++ ;
-				String localUrl = httpDo.headerFieldURL();
-				httpDo.connection.disconnect();
-				httpDo = new HttpRequestDo(localUrl);
+            
+			if(httpDo.responseCode() == 200) {
+				InputStream inputStream = httpDo.connection.getInputStream();
 				
-				//最多纪录3次
-				if(count == 3) break;
+		        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+		        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+		    
+		        String str = "";
+		        while ((str = bufferedReader.readLine()) != null) {
+		        	buffer.append(str);
+		        }
+		        // 释放资源    
+		        returnStr = buffer.toString();
+		        bufferedReader.close();
+		        inputStreamReader.close();
+		        
+		        inputStream.close();
+		        inputStream = null;
 			}
-			
-			InputStream inputStream = httpDo.connection.getInputStream();
-			
-	        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
-	        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-	    
-	        String str = "";
-	        while ((str = bufferedReader.readLine()) != null) {
-	        	buffer.append(str);
-	        }
-	        
-	        returnStr = buffer.toString();
-	        bufferedReader.close();
-	        inputStreamReader.close();
-	        // 释放资源    
-	        inputStream.close();
-	        inputStream = null;
+	       
 	        httpDo.connection.disconnect();
+	        
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,11 +118,5 @@ public class APIRequest {
 		}
 		
 		return returnStr;
-	}
-	
-	public static void main(String args[]) {
-		APIRequest test = new APIRequest();
-		String str = test.GXBAPIRequest("getaccount","gxb-wm");
-		System.out.println(str);
 	}
 }

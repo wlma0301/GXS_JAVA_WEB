@@ -25,7 +25,7 @@ public class GetAccount extends WalletAPI {
 				"\"jsonrpc\": \"2.0\", " + 
 				"\"method\": \"call\", " + 
 				"\"params\": [0, \"get_accounts\", [[\"1.2.1\",\"1.2.2\"]]], " + 
-				"\"id\": " + paraStr + 
+				"\"id\": 1" + 
 			"}";
 		try {
 			this.jsonObject = new JSONObject(objectStr);

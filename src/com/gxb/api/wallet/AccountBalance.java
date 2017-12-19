@@ -10,7 +10,7 @@ public class AccountBalance extends WalletAPI{
 	private String id_or_name = "";    //账户ID 或者 账户名
 	
 	@Override
-	public String jsonObj() {
+	public JSONObject jsonObj() {
 		// TODO Auto-generated method stub
 		return "account_balance/" + this.id_or_name;
 	}
