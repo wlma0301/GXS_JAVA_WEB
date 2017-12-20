@@ -1,7 +1,6 @@
 package com.gxb.web;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,8 +10,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.util.Properties;
-
-import org.json.JSONObject;
 
 import com.gxb.api.APIObj;
 import com.gxb.util.HttpRequestDo;
@@ -24,7 +21,7 @@ import com.gxb.util.HttpRequestDo;
  */
 
 public class APIRequest {
-	public static final String ADD_URL = "https://node1.gxb.io/";
+	public static final String ADD_URL = "https://block.gxb.io/api/";
 	public static final String propertiesFile = "./WebContent/WEB-INF/etc/gxbapi.properties";
 	public static HttpURLConnection connection = null;
 	public static Properties apiProperties = null;
@@ -73,36 +70,37 @@ public class APIRequest {
 			Class c = Class.forName(apiType_1);
 			apiObj = (APIObj) c.newInstance();
 			apiObj.doParameter(parameter);
-			JSONObject obj = apiObj.jsonObj();
-			
-			httpDo = new HttpRequestDo(ADD_URL);
-			
-			DataOutputStream out = new DataOutputStream(httpDo.connection.getOutputStream());
-			out.writeBytes(obj.toString());
-            out.flush();
-            out.close();
-            
-			if(httpDo.responseCode() == 200) {
-				InputStream inputStream = httpDo.connection.getInputStream();
+			String obj = apiObj.jsonObj();
+			String strUrl = ADD_URL + obj;
+			httpDo = new HttpRequestDo(strUrl);
+			int count = 0;
+			while(httpDo.responseCode() == 302 || httpDo.responseCode() == 301) {
+				count ++ ;
+				String localUrl = httpDo.headerFieldURL();
+				httpDo.connection.disconnect();
+				httpDo = new HttpRequestDo(localUrl);
 				
-		        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
-		        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-		    
-		        String str = "";
-		        while ((str = bufferedReader.readLine()) != null) {
-		        	buffer.append(str);
-		        }
-		        // 释放资源    
-		        returnStr = buffer.toString();
-		        bufferedReader.close();
-		        inputStreamReader.close();
-		        
-		        inputStream.close();
-		        inputStream = null;
+				//最多纪录3次
+				if(count == 3) break;
 			}
-	       
-	        httpDo.connection.disconnect();
+			
+			InputStream inputStream = httpDo.connection.getInputStream();
+			
+	        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+	        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+	    
+	        String str = "";
+	        while ((str = bufferedReader.readLine()) != null) {
+	        	buffer.append(str);
+	        }
 	        
+	        returnStr = buffer.toString();
+	        bufferedReader.close();
+	        inputStreamReader.close();
+	        // 释放资源    
+	        inputStream.close();
+	        inputStream = null;
+	        httpDo.connection.disconnect();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

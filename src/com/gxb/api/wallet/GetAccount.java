@@ -1,8 +1,5 @@
 package com.gxb.api.wallet;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
  * 账户查询
  * @author Wolkin
@@ -10,7 +7,7 @@ import org.json.JSONObject;
  */
 public class GetAccount extends WalletAPI {
 
-	private JSONObject jsonObject = null;
+	private String account_name_or_id = "";
 	
 	/**
 	 * 缺省构造函数
@@ -21,32 +18,20 @@ public class GetAccount extends WalletAPI {
 	
 	@Override
 	public void doParameter(String paraStr) {
-		String objectStr = "{" + 
-				"\"jsonrpc\": \"2.0\", " + 
-				"\"method\": \"call\", " + 
-				"\"params\": [0, \"get_accounts\", [[\"1.2.1\",\"1.2.2\"]]], " + 
-				"\"id\": 1" + 
-			"}";
-		try {
-			this.jsonObject = new JSONObject(objectStr);
-			System.out.println(objectStr);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.account_name_or_id = paraStr;
 	}
 	
 	@Override
-	public JSONObject jsonObj() {
-		
-		return this.jsonObject;
+	public String jsonObj() {
+		System.out.println("account/" + this.account_name_or_id);
+		return "account/" + this.account_name_or_id;
 	}
 
-	public JSONObject getAccount_name_or_id() {
-		return this.jsonObject;
+	public String getAccount_name_or_id() {
+		return account_name_or_id;
 	}
 
-	public void setAccount_name_or_id(JSONObject jsonObject) {
-		this.jsonObject = jsonObject;
+	public void setAccount_name_or_id(String account_name_or_id) {
+		this.account_name_or_id = account_name_or_id;
 	}
 }
