@@ -8,13 +8,6 @@ package com.gxb.api.wallet;
 public class GetAccounts extends WalletAPI {
 
 	/**
-	 * 缺省构造函数
-	 */
-	public GetAccounts() {
-		
-	}
-	
-	/**
 	 * 当个账户查询以逗号分隔
 	 */
 	@Override
