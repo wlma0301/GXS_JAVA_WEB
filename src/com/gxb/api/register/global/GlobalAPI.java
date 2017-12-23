@@ -1,17 +1,16 @@
-package com.gxb.api.witness;
+package com.gxb.api.register.global;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.gxb.api.APIObj;
 
 /**
- * 定义见证信息接口抽象类
+ * 定义全局接口抽象类 实现jsonObj()方法
  * @author Wolkin
  *
  */
 
-public abstract class WitnessAPI  implements APIObj{
+public abstract class GlobalAPI implements APIObj {
 	protected String jsonStr = "";
 	
 	@Override
@@ -27,9 +26,7 @@ public abstract class WitnessAPI  implements APIObj{
 		return jsonObj;
 	}
 
-	/**
-	 * 参数处理
-	 */
 	@Override
 	public abstract void doParameter(String paraStr);
+
 }

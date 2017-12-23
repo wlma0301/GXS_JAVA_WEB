@@ -1,4 +1,4 @@
-package com.gxb.api.witness;
+package com.gxb.api.register;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -6,13 +6,12 @@ import org.json.JSONObject;
 import com.gxb.api.APIObj;
 
 /**
- * 定义见证信息接口抽象类
+ * 定义History类，注册获取公信链History api编号
  * @author Wolkin
  *
  */
-
-public abstract class WitnessAPI  implements APIObj{
-	protected String jsonStr = "";
+public class History  implements APIObj{
+	private String jsonStr = "";
 	
 	@Override
 	public JSONObject jsonObj() {
@@ -27,9 +26,14 @@ public abstract class WitnessAPI  implements APIObj{
 		return jsonObj;
 	}
 
-	/**
-	 * 参数处理
-	 */
 	@Override
-	public abstract void doParameter(String paraStr);
+	public void doParameter(String paraStr) {
+		// TODO Auto-generated method stub
+		this.jsonStr = "{" + 
+						   "\"method\": \"call\", " + 
+						   "\"params\": [1, \"history\", []], " + 
+						   "\"id\":3" + 
+					   "}";
+	}
+
 }

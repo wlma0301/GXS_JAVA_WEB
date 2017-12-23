@@ -1,4 +1,4 @@
-package com.gxb.api.witness;
+package com.gxb.api.block;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -6,12 +6,12 @@ import org.json.JSONObject;
 import com.gxb.api.APIObj;
 
 /**
- * 定义见证信息接口抽象类
+ * 区块信息接口对象
  * @author Wolkin
  *
  */
 
-public abstract class WitnessAPI  implements APIObj{
+public abstract class BlockAPI implements APIObj{
 	protected String jsonStr = "";
 	
 	@Override
@@ -26,10 +26,7 @@ public abstract class WitnessAPI  implements APIObj{
 		}
 		return jsonObj;
 	}
-
-	/**
-	 * 参数处理
-	 */
+	
 	@Override
 	public abstract void doParameter(String paraStr);
 }

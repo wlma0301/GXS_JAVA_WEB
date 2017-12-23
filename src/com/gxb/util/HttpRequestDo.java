@@ -29,7 +29,7 @@ public class HttpRequestDo {
 			//允许输入流，即允许下载
 			this.connection.setDoInput(true);
 			//使用post请求
-			this.connection.setRequestMethod("GET");
+			this.connection.setRequestMethod("POST");
 			//不使用缓冲
 			this.connection.setUseCaches(false);
 			this.connection.setConnectTimeout(5000);
@@ -71,5 +71,21 @@ public class HttpRequestDo {
 			e.printStackTrace();
 		}
 		return code;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public HttpURLConnection getConnection() {
+		return connection;
+	}
+
+	/**
+	 * 
+	 * @param connection
+	 */
+	public void setConnection(HttpURLConnection connection) {
+		this.connection = connection;
 	}
 }
