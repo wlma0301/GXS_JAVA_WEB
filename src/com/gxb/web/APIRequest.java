@@ -26,14 +26,14 @@ import com.gxb.util.HttpRequestDo;
 
 public class APIRequest {
 	public static final String ADD_URL = "https://node1.gxb.io/";
-	public static String propertiesFile = "./WebContent/WEB-INF/etc/gxbapi.properties";
+	public static String propertiesFile = "/etc/gxbapi.properties";
 	public static HttpURLConnection connection = null;
 	public static Properties apiProperties = null;
 	APIObj apiObj = null;
 	
 	public APIRequest() {
 		try {
-			File file = new File(propertiesFile);
+			File file = new File("./WebContent/WEB-INF" + propertiesFile);
 			InputStream inputStream = new FileInputStream(file);
 			apiProperties = new Properties();
 			apiProperties.load(inputStream);
