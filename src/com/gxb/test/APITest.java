@@ -405,7 +405,7 @@ public class APITest {
 		
 		/*
 		System.out.println("查询帐户的交易历史，其中start/stop为operation_history_id， id为1.11.x  params <account_id> <start> <limit> <stop>");
-		String strGetAccountHistory = test.GXBAPIRequest("getaccounthistory", "<account_id>,<start>,<limit>,<stop>");
+		String strGetAccountHistory = test.GXBAPIRequest("getaccounthistory", "1.2.17,1.11.0,10,1.11.7998");
 		System.out.println(strGetAccountHistory);
 		*/
 		

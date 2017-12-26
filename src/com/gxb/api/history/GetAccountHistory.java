@@ -20,7 +20,7 @@ public class GetAccountHistory extends HistoryAPI {
 							"\"jsonrpc\": \"2.0\", " + 
 							"\"method\": \"call\", " + 
 							"\"params\": [3, \"get_account_history\", [\"" + temStr + "\"]], " + 
-							"\"id\":1" + 
+							"\"id\":2" + 
 						"}";
 	}
 
