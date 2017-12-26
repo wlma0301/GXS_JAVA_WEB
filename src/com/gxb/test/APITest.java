@@ -345,13 +345,13 @@ public class APITest {
 		
 		/*
 		System.out.println("获取指定时间内数据交易的产品费用 params <start> <end>");
-		String strGetDataTransactionProductCosts = test.GXBAPIRequest("getdatatransactionproductcosts", "<start>,<end>");
+		String strGetDataTransactionProductCosts = test.GXBAPIRequest("getdatatransactionproductcosts", "2017-01-01T00:00:00,2017-12-26T00:00:00");
 		System.out.println(strGetDataTransactionProductCosts);
 		*/
 		
 		/*
 		System.out.println("获取指定时间内数据交易的次数 params <start> <end>");
-		String strGetDataTransactionTotalCount = test.GXBAPIRequest("getdatatransactiontotalcount", "<start>,<end>");
+		String strGetDataTransactionTotalCount = test.GXBAPIRequest("getdatatransactiontotalcount", "2017-01-01T00:00:00,2017-12-26T00:00:00");
 		System.out.println(strGetDataTransactionTotalCount);
 		*/
 		
@@ -363,13 +363,13 @@ public class APITest {
 		
 		/*
 		System.out.println("获取指定时间内数据交易的佣金 params <start> <end>");
-		String strGetDataTransactionCommission = test.GXBAPIRequest("getdatatransactioncommission", "<start>,<end>");
+		String strGetDataTransactionCommission = test.GXBAPIRequest("getdatatransactioncommission", "2017-01-01T00:00:00,2017-12-26T00:00:00");
 		System.out.println(strGetDataTransactionCommission);
 		*/
 		
 		/*
 		System.out.println("获取指定时间内数据交易的手续费 params <start> <end>");
-		String strGetDataTransactionPayFee = test.GXBAPIRequest("getdatatransactionpayfee", "<start>,<end>");
+		String strGetDataTransactionPayFee = test.GXBAPIRequest("getdatatransactionpayfee", "2017-01-01T00:00:00,2017-12-26T00:00:00");
 		System.out.println(strGetDataTransactionPayFee);
 		*/
 		
